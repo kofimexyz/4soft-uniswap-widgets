@@ -1,5 +1,5 @@
 {
-  "name": "@uniswap/widgets",
+  "name": "@wunsz-4soft/uniswap-widgets",
   "description": "Uniswap Interface",
   "homepage": "https://github.com/Uniswap/widgets#readme",
   "repository": "https://github.com/Uniswap/widgets",
@@ -186,7 +186,7 @@
     "eslint-plugin-react-hooks": "^4.5.0",
     "eslint-plugin-simple-import-sort": "^7.0.0",
     "eslint-plugin-unused-imports": "^2.0.0",
-    "hardhat": "^2.10.1",
+    "hardhat": "^2.19.5",
     "html-webpack-plugin": "^5.5.0",
     "inter-ui": "^3.13.1",
     "jest": "^27.5.1",
@@ -213,6 +213,8 @@
     "yarn-deduplicate": "^6.0.2"
   },
   "resolutions": {
-    "decode-uri-component": "^0.2.2"
-  }
+    "decode-uri-component": "^0.2.2",
+    "@uniswap/smart-order-router": "@wunsz-4soft/smart-order-router:3.21.1-main.0"
+  },
+  "version": "2.59.1-main.0"
 }
