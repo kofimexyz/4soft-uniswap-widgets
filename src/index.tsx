@@ -6,6 +6,7 @@ import Widget, { WidgetProps } from 'components/Widget'
 if (typeof window !== 'undefined') {
   // Brotli complains about Browser.T
   if (!('Browser' in window)) {
+    // @ts-ignore
     window.Browser = {
       T: () => {}
     }
