@@ -3,6 +3,16 @@ import 'polyfills'
 import Swap, { SwapProps } from 'components/Swap'
 import Widget, { WidgetProps } from 'components/Widget'
 
+if (typeof window !== 'undefined') {
+  // Brotli complains about Browser.T
+  if (!('Browser' in window)) {
+    window.Browser = {
+      T: () => {}
+    }
+  }
+}
+
+
 export { getAssetsRepoURI, getNativeLogoURI, Logo, LogoUpdater, useLogo, useLogos } from './components/Logo'
 export type { Provider as EthersProvider } from '@ethersproject/abstract-provider'
 export type { JsonRpcProvider } from '@ethersproject/providers'

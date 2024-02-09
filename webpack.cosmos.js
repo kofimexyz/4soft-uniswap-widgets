@@ -61,6 +61,14 @@ module.exports = (webpackConfig) => {
     ...webpackConfig,
     resolve: {
       ...resolve,
+      fallback: {
+        ...resolve.fallback,
+        fs: false,
+        path: false,
+        Browser: false,
+        http: false,
+        https: false,
+      },
       alias: {
         '@uniswap/widgets': path.resolve(__dirname, 'dist/'),
       },
