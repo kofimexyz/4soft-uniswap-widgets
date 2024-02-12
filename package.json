@@ -216,5 +216,5 @@
     "decode-uri-component": "^0.2.2",
     "@wunsz-4soft/smart-order-router": "../smart-order-router"
   },
-  "version": "2.59.1-main.2"
+  "version": "2.59.1-main.3"
 }
