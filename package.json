@@ -213,8 +213,7 @@
     "yarn-deduplicate": "^6.0.2"
   },
   "resolutions": {
-    "decode-uri-component": "^0.2.2",
-    "@wunsz-4soft/smart-order-router": "../smart-order-router"
+    "decode-uri-component": "^0.2.2"
   },
-  "version": "2.59.1-main.3"
+  "version": "2.59.1-main.4"
 }

@@ -18,6 +18,7 @@ import * as Caption from './Caption'
 import { Context as ToolbarContext, Provider as ToolbarContextProvider } from './ToolbarContext'
 import ToolbarOrderRouting from './ToolbarOrderRouting'
 import ToolbarTradeSummary, { SummaryRowProps } from './ToolbarTradeSummary'
+import { useWeb3React } from "@web3-react/core";
 
 const StyledExpando = styled(Expando)`
   border: 1px solid ${({ theme }) => theme.outline};
@@ -190,12 +191,14 @@ function ToolbarActionButton() {
     trade: { trade, state },
   } = useSwapInfo()
   const isAmountPopulated = useIsAmountPopulated()
+  const { account, isActive } = useWeb3React();
+  const isWalletConnected = !!account && isActive;
 
   const insufficientBalance: boolean | undefined = useMemo(() => {
     return inputBalance && inputAmount && inputBalance.lessThan(inputAmount)
   }, [inputAmount, inputBalance])
 
-  if (insufficientBalance) {
+  if (isWalletConnected && insufficientBalance) {
     return (
       <ActionButton disabled>
         <Trans>Insufficient {inputCurrency?.symbol} balance</Trans>
@@ -203,7 +206,7 @@ function ToolbarActionButton() {
     )
   }
   const hasValidInputs = inputCurrency && outputCurrency && isAmountPopulated
-  if (hasValidInputs && (state === TradeState.NO_ROUTE_FOUND || (trade && !trade.swaps))) {
+  if (isWalletConnected && hasValidInputs && (state === TradeState.NO_ROUTE_FOUND || (trade && !trade.swaps))) {
     return (
       <ActionButton disabled>
         <Trans>Insufficient liquidity</Trans>
