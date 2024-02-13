@@ -1,8 +1,8 @@
 {
   "name": "@wunsz-4soft/uniswap-widgets",
   "description": "Uniswap Interface",
-  "homepage": "https://github.com/Uniswap/widgets#readme",
-  "repository": "https://github.com/Uniswap/widgets",
+  "homepage": "https://github.com/Wunsz/4soft-uniswap-widgets#readme",
+  "repository": "https://github.com/Wunsz/4soft-uniswap-widgets",
   "files": [
     "dist"
   ],
