@@ -36,6 +36,8 @@ const ToolbarRow = styled(Row)<{ isExpandable?: true }>`
   padding: 0 1rem;
 `
 
+interface Props {isWalletConnectedOverride?: boolean};
+
 function CaptionRow() {
   const {
     [Field.INPUT]: { currency: inputCurrency },
@@ -184,7 +186,7 @@ function CaptionRow() {
   )
 }
 
-function ToolbarActionButton() {
+function ToolbarActionButton({isWalletConnectedOverride}: Props) {
   const {
     [Field.INPUT]: { currency: inputCurrency, balance: inputBalance, amount: inputAmount },
     [Field.OUTPUT]: { currency: outputCurrency },
@@ -213,22 +215,22 @@ function ToolbarActionButton() {
       </ActionButton>
     )
   }
-  return <SwapActionButton />
+  return <SwapActionButton isWalletConnectedOverride={isWalletConnectedOverride} />
 }
 
-function Toolbar() {
+function Toolbar(props: Props) {
   return (
     <>
       <CaptionRow />
-      <ToolbarActionButton />
+      <ToolbarActionButton {...props} />
     </>
   )
 }
 
-export default memo(function WrappedToolbar() {
+export default memo(function WrappedToolbar(props: Props) {
   return (
     <ToolbarContextProvider>
-      <Toolbar />
+      <Toolbar {...props} />
     </ToolbarContextProvider>
   )
 })

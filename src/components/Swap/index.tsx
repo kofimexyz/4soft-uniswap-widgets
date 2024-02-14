@@ -29,7 +29,8 @@ import useValidate from './useValidate'
 // TODO(zzmp): refactor WalletConnection into Widget component
 export interface SwapProps extends FeeOptions, SwapController, SwapEventHandlers, TokenDefaults {
   hideConnectionUI?: boolean
-  routerUrl?: string
+  routerUrl?: string,
+  isWalletConnectedOverride?: boolean
 }
 
 export default function Swap(props: SwapProps) {
@@ -58,7 +59,7 @@ export default function Swap(props: SwapProps) {
             <Input />
             <ReverseButton />
             <Output />
-            <Toolbar />
+            <Toolbar isWalletConnectedOverride={props.isWalletConnectedOverride} />
             {useBrandedFooter() && <BrandedFooter />}
           </PopoverBoundaryProvider>
         </div>

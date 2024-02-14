@@ -12,8 +12,9 @@ import ConnectWalletButton from './ConnectWalletButton'
 import SwapButton from './SwapButton'
 import SwitchChainButton from './SwitchChainButton'
 import WrapButton from './WrapButton'
+import LoadingButton from "./LoadingButton";
 
-export default function SwapActionButton() {
+export default function SwapActionButton({isWalletConnectedOverride}: {isWalletConnectedOverride?: boolean}) {
   const { account, isActive } = useWeb3React()
   const {
     [Field.INPUT]: { currency: inputCurrency, amount: inputCurrencyAmount, balance: inputCurrencyBalance },
@@ -36,6 +37,10 @@ export default function SwapActionButton() {
   )
 
   if (!account || !isActive) {
+    if (isWalletConnectedOverride) {
+      return <LoadingButton />
+    }
+
     return <ConnectWalletButton />
   } else if (error === ChainError.MISMATCHED_CHAINS || error === ChainError.UNSUPPORTED_CHAIN) {
     const tokenChainId = inputCurrency?.chainId ?? outputCurrency?.chainId
