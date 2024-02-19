@@ -7,13 +7,15 @@ import { createContext, PropsWithChildren, useContext, useEffect } from 'react'
 import invariant from 'tiny-invariant'
 import JsonRpcConnector from 'utils/JsonRpcConnector'
 import { WalletConnectQR } from 'utils/WalletConnect'
+import { CoinbaseWallet } from "@web3-react/coinbase-wallet";
 
 export interface Connectors {
   user: EIP1193 | JsonRpcConnector | undefined
   metaMask: MetaMask
   walletConnect: WalletConnect
   walletConnectQR: WalletConnectQR
-  network: Network
+  network: Network,
+  coinbaseWallet: CoinbaseWallet
 }
 
 const ConnectorsContext = createContext<Connectors | null>(null)

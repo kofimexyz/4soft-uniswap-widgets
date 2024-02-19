@@ -5,26 +5,27 @@ import { initializeConnector, Web3ReactHooks, Web3ReactProvider } from '@web3-re
 import { EIP1193 } from '@web3-react/eip1193'
 import { MetaMask } from '@web3-react/metamask'
 import { Network } from '@web3-react/network'
-import { Connector, Provider as Eip1193Provider } from '@web3-react/types'
-import { WalletConnect } from '@web3-react/walletconnect-v2'
-import { useAsyncError } from 'components/Error/ErrorBoundary'
-import { L1_CHAIN_IDS, L2_CHAIN_IDS, SupportedChainId } from 'constants/chains'
-import { MetaMaskConnectionError } from 'errors'
-import { PropsWithChildren, useEffect, useMemo, useRef } from 'react'
-import { Layer } from 'theme'
-import JsonRpcConnector from 'utils/JsonRpcConnector'
-import { supportedChainId } from 'utils/supportedChainId'
-import { WalletConnectQR } from 'utils/WalletConnect'
+import { CoinbaseWallet } from '@web3-react/coinbase-wallet'
+import { Actions, Connector, Provider as Eip1193Provider } from "@web3-react/types";
+import { WalletConnect } from "@web3-react/walletconnect-v2";
+import { useAsyncError } from "components/Error/ErrorBoundary";
+import { L1_CHAIN_IDS, L2_CHAIN_IDS, SupportedChainId } from "constants/chains";
+import { MetaMaskConnectionError } from "errors";
+import { PropsWithChildren, useEffect, useMemo, useRef } from "react";
+import { Layer } from "theme";
+import JsonRpcConnector from "utils/JsonRpcConnector";
+import { supportedChainId } from "utils/supportedChainId";
+import { WalletConnectQR } from "utils/WalletConnect";
 
-import { Provider as ConnectorsProvider } from './useConnectors'
+import { Provider as ConnectorsProvider } from "./useConnectors";
 import {
   JsonRpcConnectionMap,
   Provider as JsonRpcUrlMapProvider,
   toJsonRpcConnectionMap,
-  toJsonRpcUrlMap,
-} from './useJsonRpcUrlsMap'
+  toJsonRpcUrlMap
+} from "./useJsonRpcUrlsMap";
 
-const DEFAULT_CHAIN_ID = SupportedChainId.MAINNET
+const DEFAULT_CHAIN_ID = SupportedChainId.MAINNET;
 
 type Web3ReactConnector<T extends Connector = Connector> = [T, Web3ReactHooks]
 
@@ -34,6 +35,7 @@ interface Web3ReactConnectors {
   walletConnect: Web3ReactConnector<WalletConnect>
   walletConnectQR: Web3ReactConnector<WalletConnectQR>
   network: Web3ReactConnector<Network>
+  coinbaseWallet: Web3ReactConnector<CoinbaseWallet>
 }
 
 export interface ProviderProps {
@@ -82,6 +84,7 @@ export function Provider({
 
     const prioritizedConnectors: (Web3ReactConnector | null | undefined)[] = [
       web3ReactConnectors.user,
+      web3ReactConnectors.coinbaseWallet,
       web3ReactConnectors.metaMask,
       web3ReactConnectors.walletConnect,
       web3ReactConnectors.walletConnectQR,
@@ -97,6 +100,7 @@ export function Provider({
       walletConnect: web3ReactConnectors.walletConnect[0],
       walletConnectQR: web3ReactConnectors.walletConnectQR[0],
       network: web3ReactConnectors.network[0],
+      coinbaseWallet: web3ReactConnectors.coinbaseWallet[0]
     }),
     [web3ReactConnectors]
   )
@@ -108,7 +112,7 @@ export function Provider({
       connectors.user.activate().catch(() => undefined)
       return
     } else if (shouldEagerlyConnect) {
-      const eagerConnectors = [connectors.metaMask, connectors.walletConnect]
+      const eagerConnectors = [connectors.metaMask, connectors.walletConnect, connectors.coinbaseWallet]
       eagerConnectors.forEach((connector) => connector.connectEagerly().catch(() => undefined))
     }
     connectors.network.activate().catch(() => undefined)
@@ -127,12 +131,15 @@ function initializeWeb3ReactConnector<T extends Connector, P extends object>(
   Constructor: { new (options: P): T },
   options: Omit<P, 'actions'>
 ): Web3ReactConnector<T> {
-  const [connector, hooks] = initializeConnector((actions) => new Constructor({ actions, ...options } as P))
+  const [connector, hooks, store] = initializeConnector((actions) => new Constructor({ actions, ...options } as P))
   if (options && 'provider' in options) {
     // Short-circuit provider selection to improve performance and testability.
     // Without doing so, provider will be unavailable for a frame.
     hooks.useProvider = (() => (options as Record<'provider', unknown>).provider) as typeof hooks.useProvider
   }
+
+  // @ts-ignore
+  window.storeDev = store;
   return [connector, hooks]
 }
 
@@ -210,6 +217,13 @@ function useWeb3ReactConnectors({ defaultChainId, provider, jsonRpcUrlMap }: Pro
     [connectionMap, defaultChainId]
   )
 
+  const coinbaseWallet = useMemo(() => initializeWeb3ReactConnector(CoinbaseWallet, {
+    options: {
+      url: urlMap[defaultChainId ?? 10],
+      appName: 'Uniswap Widget',
+    }
+  }), [urlMap, defaultChainId])
+
   return useMemo<Web3ReactConnectors>(
     () => ({
       user,
@@ -217,6 +231,7 @@ function useWeb3ReactConnectors({ defaultChainId, provider, jsonRpcUrlMap }: Pro
       walletConnect,
       walletConnectQR,
       network,
+      coinbaseWallet
     }),
     [metaMask, network, user, walletConnect, walletConnectQR]
   )
