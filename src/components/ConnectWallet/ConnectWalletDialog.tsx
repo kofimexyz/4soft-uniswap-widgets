@@ -151,6 +151,11 @@ export function ConnectWalletDialog() {
           logoSrc={METAMASK_ICON_URL}
           onClick={() => onActivate(connectors.metaMask)}
         />
+        <MetaMaskButton
+          walletName="Coinbase"
+          logoSrc={METAMASK_ICON_URL}
+          onClick={() => onActivate(connectors.coinbaseWallet)}
+        />
         <NoWalletButton />
       </Body>
     </>
