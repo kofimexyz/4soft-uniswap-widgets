@@ -222,7 +222,7 @@ function ToolbarActionButton({isWalletConnectedOverride}: Props) {
   return <SwapActionButton isWalletConnectedOverride={isWalletConnectedOverride} />
 }
 
-function PreCaptionRowComponentWrapper({Component}: {Component: Required<Props['PreCaptionRowComponent']>}) {
+function PreCaptionRowComponentWrapper({Component}: {Component: NonNullable<Props['PreCaptionRowComponent']>}) {
   const swapInfo = useSwapInfo();
 
   return <Component swapInfo={swapInfo} />;
