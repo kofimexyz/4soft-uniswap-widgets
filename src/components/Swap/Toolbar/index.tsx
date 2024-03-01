@@ -6,7 +6,7 @@ import Expando from 'components/Expando'
 import { ChainError, useIsAmountPopulated, useSwapInfo } from 'hooks/swap'
 import { useIsWrap } from 'hooks/swap/useWrapCallback'
 import { AlertTriangle } from 'icons'
-import { memo, ReactNode, useCallback, useContext, useMemo } from 'react'
+import { ComponentType, memo, ReactNode, useCallback, useContext, useMemo } from 'react';
 import { TradeState } from 'state/routing/types'
 import { Field } from 'state/swap'
 import styled from 'styled-components/macro'
@@ -36,7 +36,10 @@ const ToolbarRow = styled(Row)<{ isExpandable?: true }>`
   padding: 0 1rem;
 `
 
-interface Props {isWalletConnectedOverride?: boolean};
+interface Props {
+  isWalletConnectedOverride?: boolean,
+  PreCaptionRowComponent?: ComponentType<{swapInfo?: ReturnType<typeof useSwapInfo>}>
+}
 
 function CaptionRow() {
   const {
@@ -47,6 +50,7 @@ function CaptionRow() {
     impact,
     slippage,
   } = useSwapInfo()
+
   const isAmountPopulated = useIsAmountPopulated()
   const isWrap = useIsWrap()
   const { open, onToggleOpen } = useContext(ToolbarContext)
@@ -218,9 +222,16 @@ function ToolbarActionButton({isWalletConnectedOverride}: Props) {
   return <SwapActionButton isWalletConnectedOverride={isWalletConnectedOverride} />
 }
 
+function PreCaptionRowComponentWrapper({Component}: {Component: Required<Props['PreCaptionRowComponent']>}) {
+  const swapInfo = useSwapInfo();
+
+  return <Component swapInfo={swapInfo} />;
+}
+
 function Toolbar(props: Props) {
   return (
     <>
+      {props.PreCaptionRowComponent && <PreCaptionRowComponentWrapper Component={props.PreCaptionRowComponent} />}
       <CaptionRow />
       <ToolbarActionButton {...props} />
     </>

@@ -10,7 +10,7 @@ import useSyncTokenDefaults, { TokenDefaults } from 'hooks/swap/useSyncTokenDefa
 import { usePendingTransactions } from 'hooks/transactions'
 import { useBrandedFooter } from 'hooks/useSyncFlags'
 import { useAtom } from 'jotai'
-import { useMemo, useState } from 'react'
+import { ComponentType, useMemo, useState } from 'react';
 import { displayTxHashAtom } from 'state/swap'
 
 import Dialog from '../Dialog'
@@ -23,6 +23,7 @@ import Settings from './Settings'
 import { StatusDialog } from './Status'
 import Toolbar from './Toolbar'
 import useValidate from './useValidate'
+import { useSwapInfo } from '../../hooks/swap';
 
 // SwapProps also currently includes props needed for wallet connection (eg hideConnectionUI),
 // since the wallet connection component exists within the Swap component.
@@ -30,7 +31,8 @@ import useValidate from './useValidate'
 export interface SwapProps extends FeeOptions, SwapController, SwapEventHandlers, TokenDefaults {
   hideConnectionUI?: boolean
   routerUrl?: string,
-  isWalletConnectedOverride?: boolean
+  isWalletConnectedOverride?: boolean,
+  PreCaptionRowComponent?: ComponentType<{swapInfo?: ReturnType<typeof useSwapInfo>}>
 }
 
 export default function Swap(props: SwapProps) {
@@ -59,7 +61,7 @@ export default function Swap(props: SwapProps) {
             <Input />
             <ReverseButton />
             <Output />
-            <Toolbar isWalletConnectedOverride={props.isWalletConnectedOverride} />
+            <Toolbar isWalletConnectedOverride={props.isWalletConnectedOverride} PreCaptionRowComponent={props.PreCaptionRowComponent} />
             {useBrandedFooter() && <BrandedFooter />}
           </PopoverBoundaryProvider>
         </div>
