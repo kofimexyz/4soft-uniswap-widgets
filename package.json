@@ -1,5 +1,6 @@
 {
   "name": "@wunsz-4soft/uniswap-widgets",
+  "version": "2.59.1-main.18",
   "description": "Uniswap Interface",
   "homepage": "https://github.com/Wunsz/4soft-uniswap-widgets#readme",
   "repository": "https://github.com/Wunsz/4soft-uniswap-widgets",
@@ -32,7 +33,7 @@
     "i18n:compile": "lingui compile",
     "ajv:compile": "node scripts/compileAjvValidators.js",
     "prepare": "yarn concurrently \"npm:contracts:compile\" \"npm:i18n:compile\" \"npm:ajv:compile\"",
-    "prepublishOnly": "yarn build",
+    "prepublishOnly": "npm build",
     "start": "cosmos",
     "typecheck": "tsc -p tsconfig.json",
     "prebuild": "tsc -p tsconfig.build.json",
@@ -216,6 +217,5 @@
   },
   "resolutions": {
     "decode-uri-component": "^0.2.2"
-  },
-  "version": "2.59.1-main.16"
+  }
 }
