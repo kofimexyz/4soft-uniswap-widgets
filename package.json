@@ -81,7 +81,7 @@
     "@web3-react/types": "^8.2.3",
     "@web3-react/url": "^8.2.3",
     "@web3-react/walletconnect-v2": "^8.5.1",
-    "@uniswap/smart-order-router": "^3.25.1",
+    "@wunsz-4soft/smart-order-router": "3.25.1-main.4",
     "ajv": "^8.11.0",
     "ajv-formats": "^2.1.1",
     "cids": "^1.0.0",
@@ -170,7 +170,7 @@
     "@typescript-eslint/parser": "^5.21.0",
     "@uniswap/default-token-list": "^11.6.0",
     "@uniswap/v2-core": "1.0.0",
-    "@uniswap/v3-core": "1.0.1",
+    "@uniswap/v3-core": "1.0.0",
     "@uniswap/v3-periphery": "^1.1.1",
     "babel-jest": "^27.5.1",
     "babel-loader": "^8.2.5",
@@ -217,5 +217,5 @@
   "resolutions": {
     "decode-uri-component": "^0.2.2"
   },
-  "version": "2.59.1-main.13"
+  "version": "2.59.1-main.14"
 }

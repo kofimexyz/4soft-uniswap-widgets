@@ -4166,36 +4166,6 @@
     tiny-invariant "^1.1.0"
     toformat "^2.0.0"
 
-"@uniswap/smart-order-router@^3.25.1":
-  version "3.25.1"
-  resolved "https://registry.yarnpkg.com/@uniswap/smart-order-router/-/smart-order-router-3.25.1.tgz#c2ae3a2e987300ad054112c7e8eb6759d38f5544"
-  integrity sha512-0VIKgZUl3fifFjA8hmHnCAKdqMq1wFN+WF2BXJiPoAZgxShcB57Nsnaxu4QCtTjbzRKa1gEJWUdm4T+FA/jJVg==
-  dependencies:
-    "@types/brotli" "^1.3.4"
-    "@uniswap/default-token-list" "^11.13.0"
-    "@uniswap/permit2-sdk" "^1.2.0"
-    "@uniswap/router-sdk" "^1.9.0"
-    "@uniswap/sdk-core" "^4.2.0"
-    "@uniswap/swap-router-contracts" "^1.3.1"
-    "@uniswap/token-lists" "^1.0.0-beta.31"
-    "@uniswap/universal-router" "^1.6.0"
-    "@uniswap/universal-router-sdk" "^1.8.1"
-    "@uniswap/v2-sdk" "^4.3.0"
-    "@uniswap/v3-sdk" "^3.11.0"
-    async-retry "^1.3.1"
-    await-timeout "^1.1.1"
-    axios "^0.21.1"
-    brotli "^1.3.3"
-    bunyan "^1.8.15"
-    bunyan-blackhole "^1.1.1"
-    ethers "^5.7.2"
-    graphql "^15.5.0"
-    graphql-request "^3.4.0"
-    lodash "^4.17.21"
-    mnemonist "^0.38.3"
-    node-cache "^5.1.2"
-    stats-lite "^2.2.0"
-
 "@uniswap/swap-router-contracts@^1.1.0", "@uniswap/swap-router-contracts@^1.3.1":
   version "1.3.1"
   resolved "https://registry.yarnpkg.com/@uniswap/swap-router-contracts/-/swap-router-contracts-1.3.1.tgz#0ebbb93eb578625618ed9489872de381f9c66fb4"
@@ -4274,7 +4244,7 @@
   resolved "https://registry.npmjs.org/@uniswap/v3-core/-/v3-core-1.0.0.tgz"
   integrity sha512-kSC4djMGKMHj7sLMYVnn61k9nu+lHjMIxgg9CDQT+s2QYLoA56GbSK9Oxr+qJXzzygbkrmuY6cwgP6cW2JXPFA==
 
-"@uniswap/v3-core@1.0.1", "@uniswap/v3-core@^1.0.0":
+"@uniswap/v3-core@^1.0.0":
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/@uniswap/v3-core/-/v3-core-1.0.1.tgz#b6d2bdc6ba3c3fbd610bdc502395d86cd35264a0"
   integrity sha512-7pVk4hEm00j9tc71Y9+ssYpO6ytkeI0y7WE9P6UcmNzhxPePwyAxImuhVsTqWK9YFvzgtvzJHi64pBl4jUzKMQ==
@@ -4899,6 +4869,43 @@
   dependencies:
     "@webassemblyjs/ast" "1.11.6"
     "@xtuc/long" "4.2.2"
+
+"@wunsz-4soft/brotli@^1.3.3-main.1":
+  version "1.3.3-main.1"
+  resolved "https://registry.yarnpkg.com/@wunsz-4soft/brotli/-/brotli-1.3.3-main.1.tgz#1a6cff8e538b69d480a03cf8f6201e5baaa6543c"
+  integrity sha512-W6yo5fwKT6QXLeDyU5O1mlK6MOUHPNJE2vOztd42yX+8g013KXW7hKIgjUBSo6VOr7vkRm5uPCqkNIJFmy1FAQ==
+  dependencies:
+    base64-js "^1.1.2"
+
+"@wunsz-4soft/smart-order-router@3.25.1-main.4":
+  version "3.25.1-main.4"
+  resolved "https://registry.yarnpkg.com/@wunsz-4soft/smart-order-router/-/smart-order-router-3.25.1-main.4.tgz#b2d9a8cb3acffa1c890d857d44bd564fb53ac8c1"
+  integrity sha512-kuYuVz9BbSnyEwX0IDHCWExNPAx2Vx3bM1qasoV8T+sAXcpiEIFjQqdXZSOlVqVjjx0d0F3yJUjMbjyK+wlEcA==
+  dependencies:
+    "@types/brotli" "^1.3.4"
+    "@uniswap/default-token-list" "^11.13.0"
+    "@uniswap/permit2-sdk" "^1.2.0"
+    "@uniswap/router-sdk" "^1.9.0"
+    "@uniswap/sdk-core" "^4.2.0"
+    "@uniswap/swap-router-contracts" "^1.3.1"
+    "@uniswap/token-lists" "^1.0.0-beta.31"
+    "@uniswap/universal-router" "^1.6.0"
+    "@uniswap/universal-router-sdk" "^1.8.1"
+    "@uniswap/v2-sdk" "^4.3.0"
+    "@uniswap/v3-sdk" "^3.11.0"
+    "@wunsz-4soft/brotli" "^1.3.3-main.1"
+    async-retry "^1.3.1"
+    await-timeout "^1.1.1"
+    axios "^0.21.1"
+    bunyan "^1.8.15"
+    bunyan-blackhole "^1.1.1"
+    ethers "^5.7.2"
+    graphql "^15.5.0"
+    graphql-request "^3.4.0"
+    lodash "^4.17.21"
+    mnemonist "^0.38.3"
+    node-cache "^5.1.2"
+    stats-lite "^2.2.0"
 
 "@xtuc/ieee754@^1.2.0":
   version "1.2.0"
@@ -5785,13 +5792,6 @@ brorand@^1.1.0:
   version "1.1.0"
   resolved "https://registry.npmjs.org/brorand/-/brorand-1.1.0.tgz"
   integrity sha1-EsJe/kCkXjwyPrhnWgoM5XsiNx8=
-
-brotli@^1.3.3:
-  version "1.3.3"
-  resolved "https://registry.yarnpkg.com/brotli/-/brotli-1.3.3.tgz#7365d8cc00f12cf765d2b2c898716bcf4b604d48"
-  integrity sha512-oTKjJdShmDuGW94SyyaoQvAjf30dZaHnjJ8uAF+u2/vGJkJbJPJAT1gDiOJP5v1Zb6f9KEyW/1HpuaWIXtGHPg==
-  dependencies:
-    base64-js "^1.1.2"
 
 browser-level@^1.0.1:
   version "1.0.1"
