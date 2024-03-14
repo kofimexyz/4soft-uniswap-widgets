@@ -81,7 +81,7 @@
     "@web3-react/types": "^8.2.3",
     "@web3-react/url": "^8.2.3",
     "@web3-react/walletconnect-v2": "^8.5.1",
-    "@wunsz-4soft/smart-order-router": "3.21.1-main.1",
+    "@uniswap/smart-order-router": "^3.25.1",
     "ajv": "^8.11.0",
     "ajv-formats": "^2.1.1",
     "cids": "^1.0.0",
@@ -217,5 +217,5 @@
   "resolutions": {
     "decode-uri-component": "^0.2.2"
   },
-  "version": "2.59.1-main.11"
+  "version": "2.59.1-main.12"
 }
