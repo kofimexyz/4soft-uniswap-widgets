@@ -6,26 +6,26 @@ import { EIP1193 } from '@web3-react/eip1193'
 import { MetaMask } from '@web3-react/metamask'
 import { Network } from '@web3-react/network'
 import { CoinbaseWallet } from '@web3-react/coinbase-wallet'
-import { Actions, Connector, Provider as Eip1193Provider } from "@web3-react/types";
-import { WalletConnect } from "@web3-react/walletconnect-v2";
-import { useAsyncError } from "components/Error/ErrorBoundary";
-import { L1_CHAIN_IDS, L2_CHAIN_IDS, SupportedChainId } from "constants/chains";
-import { MetaMaskConnectionError } from "errors";
-import { PropsWithChildren, useEffect, useMemo, useRef } from "react";
-import { Layer } from "theme";
-import JsonRpcConnector from "utils/JsonRpcConnector";
-import { supportedChainId } from "utils/supportedChainId";
-import { WalletConnectQR } from "utils/WalletConnect";
+import { Actions, Connector, Provider as Eip1193Provider } from '@web3-react/types'
+import { WalletConnect } from '@web3-react/walletconnect-v2'
+import { useAsyncError } from 'components/Error/ErrorBoundary'
+import { L1_CHAIN_IDS, L2_CHAIN_IDS, SupportedChainId } from 'constants/chains'
+import { MetaMaskConnectionError } from 'errors'
+import { PropsWithChildren, useEffect, useMemo, useRef } from 'react'
+import { Layer } from 'theme'
+import JsonRpcConnector from 'utils/JsonRpcConnector'
+import { supportedChainId } from 'utils/supportedChainId'
+import { WalletConnectQR } from 'utils/WalletConnect'
 
-import { Provider as ConnectorsProvider } from "./useConnectors";
+import { Provider as ConnectorsProvider } from './useConnectors'
 import {
   JsonRpcConnectionMap,
   Provider as JsonRpcUrlMapProvider,
   toJsonRpcConnectionMap,
-  toJsonRpcUrlMap
-} from "./useJsonRpcUrlsMap";
+  toJsonRpcUrlMap,
+} from './useJsonRpcUrlsMap'
 
-const DEFAULT_CHAIN_ID = SupportedChainId.MAINNET;
+const DEFAULT_CHAIN_ID = SupportedChainId.MAINNET
 
 type Web3ReactConnector<T extends Connector = Connector> = [T, Web3ReactHooks]
 
@@ -100,7 +100,7 @@ export function Provider({
       walletConnect: web3ReactConnectors.walletConnect[0],
       walletConnectQR: web3ReactConnectors.walletConnectQR[0],
       network: web3ReactConnectors.network[0],
-      coinbaseWallet: web3ReactConnectors.coinbaseWallet[0]
+      coinbaseWallet: web3ReactConnectors.coinbaseWallet[0],
     }),
     [web3ReactConnectors]
   )
@@ -139,7 +139,7 @@ function initializeWeb3ReactConnector<T extends Connector, P extends object>(
   }
 
   // @ts-ignore
-  window.storeDev = store;
+  window.storeDev = store
   return [connector, hooks]
 }
 
@@ -176,7 +176,12 @@ function useWeb3ReactConnectors({ defaultChainId, provider, jsonRpcUrlMap }: Pro
       rpcMap: urlMap,
       projectId: 'c6c9bacd35afa3eb9e6cccf6d8464395',
       // this requires the connecting wallet to support eth mainnet
-      chains: [SupportedChainId.MAINNET, SupportedChainId.OPTIMISM, SupportedChainId.ARBITRUM_ONE],
+      chains: [
+        SupportedChainId.MAINNET,
+        SupportedChainId.OPTIMISM,
+        SupportedChainId.ARBITRUM_ONE,
+        SupportedChainId.BASE,
+      ],
       optionalChains: [...L1_CHAIN_IDS, ...L2_CHAIN_IDS],
       optionalMethods: ['eth_signTypedData', 'eth_signTypedData_v4', 'eth_sign'],
       qrModalOptions: {
@@ -217,12 +222,16 @@ function useWeb3ReactConnectors({ defaultChainId, provider, jsonRpcUrlMap }: Pro
     [connectionMap, defaultChainId]
   )
 
-  const coinbaseWallet = useMemo(() => initializeWeb3ReactConnector(CoinbaseWallet, {
-    options: {
-      url: urlMap[defaultChainId ?? 10],
-      appName: 'Uniswap Widget',
-    }
-  }), [urlMap, defaultChainId])
+  const coinbaseWallet = useMemo(
+    () =>
+      initializeWeb3ReactConnector(CoinbaseWallet, {
+        options: {
+          url: urlMap[defaultChainId ?? 10],
+          appName: 'Uniswap Widget',
+        },
+      }),
+    [urlMap, defaultChainId]
+  )
 
   return useMemo<Web3ReactConnectors>(
     () => ({
@@ -231,7 +240,7 @@ function useWeb3ReactConnectors({ defaultChainId, provider, jsonRpcUrlMap }: Pro
       walletConnect,
       walletConnectQR,
       network,
-      coinbaseWallet
+      coinbaseWallet,
     }),
     [metaMask, network, user, walletConnect, walletConnectQR]
   )
