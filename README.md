@@ -1,9 +1,6 @@
 # Uniswap Labs Widgets
 
 [![npm](https://img.shields.io/npm/v/@uniswap/widgets)](https://www.npmjs.com/package/@uniswap/widgets)
-[![Unit tests](https://github.com/Uniswap/interface/actions/workflows/test.yaml/badge.svg)](https://github.com/Uniswap/interface/actions/workflows/test.yaml)
-[![Integration tests](https://github.com/Uniswap/interface/actions/workflows/e2e.yaml/badge.svg)](https://github.com/Uniswap/interface/actions/workflows/e2e.yaml)
-[![Lint](https://github.com/Uniswap/interface/actions/workflows/lint.yml/badge.svg)](https://github.com/Uniswap/interface/actions/workflows/lint.yml)
 [![Crowdin](https://badges.crowdin.net/uniswap-interface/localized.svg)](https://crowdin.com/project/uniswap-interface)
 
 The `@uniswap/widgets` package is an [npm package](https://www.npmjs.com/package/@uniswap/widgets) of React components used to provide subsets of the Uniswap Protocol functionality in a small and configurable user interface element.
@@ -11,8 +8,6 @@ The `@uniswap/widgets` package is an [npm package](https://www.npmjs.com/package
 # Uniswap Labs Swap Widget
 
 The Swap Widget bundles the whole swapping experience into a single React component that developers can easily embed in their app with one line of code. 
-
-![swap widget screenshot](https://raw.githubusercontent.com/Uniswap/interface/main/src/assets/images/widget-screenshot.png)
 
 You can customize the theme (colors, fonts, border radius, and more) to match the style of your application. You can also configure your own default token list and optionally set a convenience fee on swaps executed through the widget on your site.
 
